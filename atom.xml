@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://eryoung.com/"/>
   <updated>2016-08-22T07:02:26.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://eryoung.com/</id>
   
   <author>
     <name>陶陶</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/08/22/hello-world/"/>
-    <id>http://yoursite.com/2016/08/22/hello-world/</id>
+    <link href="http://eryoung.com/2016/08/22/hello-world/"/>
+    <id>http://eryoung.com/2016/08/22/hello-world/</id>
     <published>2016-08-22T07:02:26.000Z</published>
     <updated>2016-08-22T07:02:26.000Z</updated>
     
