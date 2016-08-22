@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="陶陶" />
+
+
+
+<meta name="description" content="date: 2016-08-22 22:12:00">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android_studio_&_ndk_on_mac_os_x">
+<meta property="og:url" content="http://eryoung.com/2016/08/22/android-studio-ndk-on-mac-os-x/index.html">
+<meta property="og:site_name" content="Taotao's Notes">
+<meta property="og:description" content="date: 2016-08-22 22:12:00">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_1.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_2.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_3.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_4.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_5.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_6.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_7.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_8.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_9.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_10.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_11.png">
+<meta property="og:image" content="http://eryoung.com/./imgs/ndk_12.png">
+<meta property="og:updated_time" content="2016-08-22T14:14:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android_studio_&_ndk_on_mac_os_x">
+<meta name="twitter:description" content="date: 2016-08-22 22:12:00">
+<meta name="twitter:image" content="http://eryoung.com/./imgs/ndk_1.png">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternate" href="/atom.xml" title="Taotao&#39;s Notes" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>android_studio_&amp;_ndk_on_mac_os_x | Taotao&#39;s Notes</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">陶陶</a></h1>
+        </hgroup>
+
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" href="https://github.com/evorigin" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">陶陶</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">陶陶</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/evorigin" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-android-studio-ndk-on-mac-os-x" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/08/22/android-studio-ndk-on-mac-os-x/" class="article-date">
+      <time datetime="2016-08-22T14:12:00.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      android_studio_&amp;_ndk_on_mac_os_x
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>date: 2016-08-22 22:12:00</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br><br></the></p>
+<p>###</p><p style="text-indent: 2em">开发环境</p><p></p>
+<p><ul style="list-style-type:none"></ul></p>
+<p><li>1.安卓开发环境：Android Studio、SDK、JDK</li><br><br></p>
+<p><li>2.下载NDK，安装配置</li></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>###</p><p style="text-indent: 2em">配置常用命令</p><p></p>
+<p style="text-indent: 3em">NDK开发比较常用的命令就是生成头文件、构建so包，在android studio可以先配置好命令。</p>
+
+<p style="text-indent: 3em">如下图所示，添加3个命令，按＋号添加。</p><br><div align="center"><br><img src="./imgs/ndk_1.png" width="600"><br></div><br><br><br>####<p style="text-indent: 3em">1.配置javah，用于生成头文件</p><br><div align="center"><br><img src="./imgs/ndk_2.png" width="600"><br></div><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">命令配置参数：</div><div class="line">Program: /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/bin/javah</div><div class="line">Parameters: -encoding UTF-8 -v -jni -d $ModuleFileDir$/src/main/jni $FileClass$</div><div class="line">Working directory: $SourcepathEntry$</div></pre></td></tr></table></figure><br><br><br><br>####<p style="text-indent: 3em">2.配置ndk-build，用于构建so包</p><br><div align="center"><br><img src="./imgs/ndk_3.png" width="600"><br></div><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">命令配置参数：</div><div class="line">Program: /Users/taotao/Library/Android/sdk/ndk-bundle/ndk-build</div><div class="line">Parameters: 这里什么都不用填</div><div class="line">Working directory: $ModuleFileDir$/src/main</div></pre></td></tr></table></figure><br><br><br><br>####<p style="text-indent: 3em">3.配置ndk-build clean，用于清除so包</p><br><div align="center"><br><img src="./imgs/ndk_4.png" width="600"><br></div><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">命令配置参数：</div><div class="line">Program: /Users/taotao/Library/Android/sdk/ndk-bundle/ndk-build</div><div class="line">Parameters: clean</div><div class="line">Working directory: $ModuleFileDir$/src/main</div></pre></td></tr></table></figure><br><br><br><br><br>—<br><br>####<p style="text-indent: 3em"><strong><em><code>配置完3个命令之后，就可以在右键菜单中找到了。如下图</code></em></strong></p><br><div align="center"><br><img src="./imgs/ndk_5.png" width="600"><br></div><br><br><br><br>—<br><br><em>*</em><br><br>###<p style="text-indent: 2em">配置工程</p>
+
+<p style="text-indent: 3em">让工程项目使用NDK，需要做一些配置工作。<br></p><br>#####<p style="text-indent: 3em">1. 在local.properties文件中填写使用的NDK目录：</p>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ndk.dir=/Users/taotao/Library/Android/sdk/ndk-bundle</div><div class="line">sdk.dir=/Users/taotao/Library/Android/sdk</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_6.png" width="600"><br></div><br><br></p>
+<p>#####</p><p style="text-indent: 3em">2. 在gradle.properties文件中添加如下代码：</p><p></p>
+<pre><code>android.useDeprecatedNdk=true
+</code></pre><p><div align="center"><br><img src="./imgs/ndk_7.png" width="600"><br></div><br><br></p>
+<p>#####</p><p style="text-indent: 3em">3. 在module的build.gradle添加如下代码：</p><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">    ...</div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        ...</div><div class="line">        ...</div><div class="line">        ndk&#123;</div><div class="line">            moduleName &quot;ndkTest&quot;</div><div class="line">            //定义NDKlibrary的名字</div><div class="line">            //与System.loadLibrary(&quot;ndkTest&quot;);中的&quot;ndkTest&quot;相同</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_8.png" width="600"><br></div><br><br></p>
+<p>#####</p><p style="text-indent: 3em">4. 给项目添加Android.mk和Application.mk：</p><p></p>
+<pre><code>在src/main/jni文件夹中，创建Android.mk和Application.mk
+</code></pre><p>######Android.mk代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div><div class="line">include $(CLEAR_VARS)</div><div class="line"></div><div class="line">LOCAL_MODULE := ndkTest //同第三步的ndkTest</div><div class="line">LOCAL_SRC_FILES := main.c //创建的C文件名</div><div class="line"></div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_9.png" width="600"><br></div><br><br></p>
+<p>######Application.mk代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">APP_MODULES := ndkTest //同Android.mk中的ndkTest</div><div class="line">APP_ABI := all</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_10.png" width="600"><br></div><br><br></p>
+<hr>
+<p><strong><em>配置全部完成，开始写一个Hello World的小程序</em></strong></p>
+<hr>
+<p>#####</p><p style="text-indent: 3em">1. 在java中声明一个本地方法，并加载本地库,如下：</p><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class HelloNdk &#123;</div><div class="line">    static &#123;</div><div class="line">        System.loadLibrary(&quot;ndkTest&quot;);</div><div class="line">    &#125;</div><div class="line">    public native String getHelloFromC();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####</p><p style="text-indent: 3em">2. 生成它的头文件（自动生成的名字是包名+类名com_example_taotao_demondk2_HelloNdk.h），并且创建c/c++文件（main.c），如下：</p><p></p>
+<p><strong><em>自动生成头文件，如下</em></strong></p>
+<p><div align="center"><br><img src="./imgs/ndk_11.png" width="600"><br></div><br><br></p>
+<p><strong><em>在jni文件夹创建main.c代码，如下</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#include &lt;jni.h&gt;</div><div class="line"></div><div class="line">//</div><div class="line">// Created by taotao on 16/7/25.</div><div class="line">//</div><div class="line">JNIEXPORT jstring JNICALL Java_com_example_taotao_demondk2_HelloNdk_getHelloFromC</div><div class="line">        (JNIEnv *env, jobject obj) &#123;</div><div class="line">    return (*env)-&gt;NewStringUTF(env, &quot;世界您好！&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####</p><p style="text-indent: 3em">3. MainActivity.class中实现</p><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">package com.example.taotao.demondk2;</div><div class="line"></div><div class="line">import android.support.v7.app.AppCompatActivity;</div><div class="line">import android.os.Bundle;</div><div class="line">import android.widget.TextView;</div><div class="line"></div><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    private TextView textView;</div><div class="line">    private HelloNdk helloNdk;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        textView = (TextView) findViewById(R.id.textView);</div><div class="line">        helloNdk = new HelloNdk();</div><div class="line"></div><div class="line">        textView.setText(helloNdk.getHelloFromC());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####</p><p style="text-indent: 3em">4. 运行App</p><p></p>
+<p><div align="center"><br><img src="./imgs/ndk_12.png" width="400"><br></div><br><br></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/08/22/android-studio-ndk-on-mac-os-x/">android_studio_&amp;_ndk_on_mac_os_x</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">陶陶</a></p>
+        <p><span>发布时间:</span>2016-08-22, 22:12:00</p>
+        <p><span>最后更新:</span>2016-08-22, 22:14:34</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/08/22/android-studio-ndk-on-mac-os-x/" title="android_studio_&amp;_ndk_on_mac_os_x">http://eryoung.com/2016/08/22/android-studio-ndk-on-mac-os-x/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://eryoung.com/2016/08/22/android-studio-ndk-on-mac-os-x/　　作者: 陶陶" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/08/22/hello-world/">
+                    Hello World
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#"><span class="toc-number">1.</span> <span class="toc-text"></span></a></li></ol>
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"android_studio_&_ndk_on_mac_os_x　| Taotao's Notes　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/08/22/hello-world/" title="下一篇: Hello World">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/08/22/android-studio-ndk-on-mac-os-x/">android_studio_&_ndk_on_mac_os_x</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/22/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 陶陶
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" title="本站到访数"><i class="fa fa-user" aria-hidden="true"></i><span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>| </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit"  title="本页阅读量"><i class="fa fa-eye animated infinite pulse" aria-hidden="true"></i><span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

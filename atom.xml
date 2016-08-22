@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://eryoung.com/"/>
-  <updated>2016-08-22T14:07:17.000Z</updated>
+  <updated>2016-08-22T14:14:34.000Z</updated>
   <id>http://eryoung.com/</id>
   
   <author>
@@ -14,6 +14,69 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>android_studio_&amp;_ndk_on_mac_os_x</title>
+    <link href="http://eryoung.com/2016/08/22/android-studio-ndk-on-mac-os-x/"/>
+    <id>http://eryoung.com/2016/08/22/android-studio-ndk-on-mac-os-x/</id>
+    <published>2016-08-22T14:12:00.000Z</published>
+    <updated>2016-08-22T14:14:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>date: 2016-08-22 22:12:00</p>
+<p><excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br><br></the></p>
+<p>###</p><p style="text-indent: 2em">开发环境</p><p></p>
+<p><ul style="list-style-type:none"></ul></p>
+<p><li>1.安卓开发环境：Android Studio、SDK、JDK</li><br><br></p>
+<p><li>2.下载NDK，安装配置</li></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>###</p><p style="text-indent: 2em">配置常用命令</p><p></p>
+<p style="text-indent: 3em">NDK开发比较常用的命令就是生成头文件、构建so包，在android studio可以先配置好命令。</p>
+
+<p style="text-indent: 3em">如下图所示，添加3个命令，按＋号添加。</p><br><div align="center"><br><img src="./imgs/ndk_1.png" width="600"><br></div><br><br><br>####<p style="text-indent: 3em">1.配置javah，用于生成头文件</p><br><div align="center"><br><img src="./imgs/ndk_2.png" width="600"><br></div><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">命令配置参数：</div><div class="line">Program: /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/bin/javah</div><div class="line">Parameters: -encoding UTF-8 -v -jni -d $ModuleFileDir$/src/main/jni $FileClass$</div><div class="line">Working directory: $SourcepathEntry$</div></pre></td></tr></table></figure><br><br><br><br>####<p style="text-indent: 3em">2.配置ndk-build，用于构建so包</p><br><div align="center"><br><img src="./imgs/ndk_3.png" width="600"><br></div><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">命令配置参数：</div><div class="line">Program: /Users/taotao/Library/Android/sdk/ndk-bundle/ndk-build</div><div class="line">Parameters: 这里什么都不用填</div><div class="line">Working directory: $ModuleFileDir$/src/main</div></pre></td></tr></table></figure><br><br><br><br>####<p style="text-indent: 3em">3.配置ndk-build clean，用于清除so包</p><br><div align="center"><br><img src="./imgs/ndk_4.png" width="600"><br></div><br><br><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">命令配置参数：</div><div class="line">Program: /Users/taotao/Library/Android/sdk/ndk-bundle/ndk-build</div><div class="line">Parameters: clean</div><div class="line">Working directory: $ModuleFileDir$/src/main</div></pre></td></tr></table></figure><br><br><br><br><br>—<br><br>####<p style="text-indent: 3em"><strong><em><code>配置完3个命令之后，就可以在右键菜单中找到了。如下图</code></em></strong></p><br><div align="center"><br><img src="./imgs/ndk_5.png" width="600"><br></div><br><br><br><br>—<br><br><em>*</em><br><br>###<p style="text-indent: 2em">配置工程</p>
+
+<p style="text-indent: 3em">让工程项目使用NDK，需要做一些配置工作。<br></p><br>#####<p style="text-indent: 3em">1. 在local.properties文件中填写使用的NDK目录：</p>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ndk.dir=/Users/taotao/Library/Android/sdk/ndk-bundle</div><div class="line">sdk.dir=/Users/taotao/Library/Android/sdk</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_6.png" width="600"><br></div><br><br></p>
+<p>#####</p><p style="text-indent: 3em">2. 在gradle.properties文件中添加如下代码：</p><p></p>
+<pre><code>android.useDeprecatedNdk=true
+</code></pre><p><div align="center"><br><img src="./imgs/ndk_7.png" width="600"><br></div><br><br></p>
+<p>#####</p><p style="text-indent: 3em">3. 在module的build.gradle添加如下代码：</p><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">android &#123;</div><div class="line">    ...</div><div class="line">    ...</div><div class="line"></div><div class="line">    defaultConfig &#123;</div><div class="line">        ...</div><div class="line">        ...</div><div class="line">        ndk&#123;</div><div class="line">            moduleName &quot;ndkTest&quot;</div><div class="line">            //定义NDKlibrary的名字</div><div class="line">            //与System.loadLibrary(&quot;ndkTest&quot;);中的&quot;ndkTest&quot;相同</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_8.png" width="600"><br></div><br><br></p>
+<p>#####</p><p style="text-indent: 3em">4. 给项目添加Android.mk和Application.mk：</p><p></p>
+<pre><code>在src/main/jni文件夹中，创建Android.mk和Application.mk
+</code></pre><p>######Android.mk代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">LOCAL_PATH := $(call my-dir)</div><div class="line">include $(CLEAR_VARS)</div><div class="line"></div><div class="line">LOCAL_MODULE := ndkTest //同第三步的ndkTest</div><div class="line">LOCAL_SRC_FILES := main.c //创建的C文件名</div><div class="line"></div><div class="line">include $(BUILD_SHARED_LIBRARY)</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_9.png" width="600"><br></div><br><br></p>
+<p>######Application.mk代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">APP_MODULES := ndkTest //同Android.mk中的ndkTest</div><div class="line">APP_ABI := all</div></pre></td></tr></table></figure>
+<p><div align="center"><br><img src="./imgs/ndk_10.png" width="600"><br></div><br><br></p>
+<hr>
+<p><strong><em>配置全部完成，开始写一个Hello World的小程序</em></strong></p>
+<hr>
+<p>#####</p><p style="text-indent: 3em">1. 在java中声明一个本地方法，并加载本地库,如下：</p><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public class HelloNdk &#123;</div><div class="line">    static &#123;</div><div class="line">        System.loadLibrary(&quot;ndkTest&quot;);</div><div class="line">    &#125;</div><div class="line">    public native String getHelloFromC();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####</p><p style="text-indent: 3em">2. 生成它的头文件（自动生成的名字是包名+类名com_example_taotao_demondk2_HelloNdk.h），并且创建c/c++文件（main.c），如下：</p><p></p>
+<p><strong><em>自动生成头文件，如下</em></strong></p>
+<p><div align="center"><br><img src="./imgs/ndk_11.png" width="600"><br></div><br><br></p>
+<p><strong><em>在jni文件夹创建main.c代码，如下</em></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#include &lt;jni.h&gt;</div><div class="line"></div><div class="line">//</div><div class="line">// Created by taotao on 16/7/25.</div><div class="line">//</div><div class="line">JNIEXPORT jstring JNICALL Java_com_example_taotao_demondk2_HelloNdk_getHelloFromC</div><div class="line">        (JNIEnv *env, jobject obj) &#123;</div><div class="line">    return (*env)-&gt;NewStringUTF(env, &quot;世界您好！&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####</p><p style="text-indent: 3em">3. MainActivity.class中实现</p><p></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">package com.example.taotao.demondk2;</div><div class="line"></div><div class="line">import android.support.v7.app.AppCompatActivity;</div><div class="line">import android.os.Bundle;</div><div class="line">import android.widget.TextView;</div><div class="line"></div><div class="line">public class MainActivity extends AppCompatActivity &#123;</div><div class="line"></div><div class="line">    private TextView textView;</div><div class="line">    private HelloNdk helloNdk;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line"></div><div class="line">        textView = (TextView) findViewById(R.id.textView);</div><div class="line">        helloNdk = new HelloNdk();</div><div class="line"></div><div class="line">        textView.setText(helloNdk.getHelloFromC());</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>#####</p><p style="text-indent: 3em">4. 运行App</p><p></p>
+<p><div align="center"><br><img src="./imgs/ndk_12.png" width="400"><br></div><br><br></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;date: 2016-08-22 22:12:00&lt;/p&gt;
+&lt;p&gt;&lt;Excerpt in index | 首页摘要&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
